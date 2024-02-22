@@ -22,3 +22,22 @@ h1 {
 h1, h2 {
   font-family: 'Prata', serif;
 }
+
+.cabeca {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addIcon {
+  width: 52px;
+  height: auto;
+  margin-left: 32px;
+  transform: scaleX(-1);
+}
+
+.addIcon:hover {
+  scale: 1.2;
+  cursor: pointer;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}

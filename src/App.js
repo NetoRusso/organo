@@ -4,8 +4,11 @@ import Formulario from "./componentes/Formulario";
 import Rodape from "./componentes/Rodape";
 import Time from "./componentes/Time";
 import { v4 as uuidv4 } from 'uuid';
+import addIcon from "./add_icon.svg";
 
 function App() {
+
+  const [visivel, setVisivel] = useState(false);
 
   const [times, setTimes] = useState([
     {
@@ -242,6 +245,10 @@ function App() {
 
   const [colaboradores, setColaboradores] = useState(inicial)
 
+  function addFormulario() {
+    setVisivel((visivel) => !visivel);
+  }
+
   function deletarColaborador(id) {
     setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id ));
   }
@@ -269,13 +276,16 @@ function App() {
   return (
     <div>
       <Banner />
-      <Formulario
+      {visivel && <Formulario
         cadastrarTime={cadastrarTime}
         times={times.map(time => time.nome)}
         aoCadastrar={colaborador => setColaboradores([...colaboradores, {...colaborador, id: uuidv4()}])} 
-      />
+      />}
       <section className="times">
-        <h1>Minha organização</h1>
+        <div className="cabeca"> 
+          <h1>Minha organização</h1>
+          <img onClick={addFormulario} className="addIcon" src={addIcon} alt="icone de adicionar times e colaboradores" />
+        </div>
         {times.map((time, indice) =>
           <Time
             aoFavoritar={resolverFavorito}
